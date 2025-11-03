@@ -39,10 +39,22 @@
 ## Como rodar em seu PC
 ### 👨‍💻 Rodando Localmente
 📋 Pré-requisitos:
+
+1. Instale o Python em seu computador. Recomendamos a versão 3.12.7.
+2. Instale todas as bibliotecas necessárias. No VSCode, use o comando:
+```python
+pip install -r requirements.txt
+```
+
+▶️ Executando a aplicação
+1. Digite em seu terminal:
+```python
+cd streamlit
+python -m streamlit run main.py
+```
+2. O aplicativo deve abrir em seu navegador padrão automaticamente.
 --------------------
 
-### 🌐 Rodando na Web
-------------
 
 ## 👨‍🏫 Professor responsavel
 
@@ -56,10 +68,6 @@
     </td>
   </tr>
 </table>
-
-## ⭐ Agradecimentos
-
---------------
 
 ## 🤝 Colaboradores
 
@@ -88,11 +96,11 @@
 
 ### 💪 Como cada colaborador contribuiu?
 
-> Edélio G. M. de Jesus:
+> Edélio G. M. de Jesus: Desenvolveu os modelos Suport Vector Machine e Kernel Ridge Regression, além de fazer a análise SHAP.
 
-> Mateus de Jesus Mendes:
+> Mateus de Jesus Mendes: Atuou para integrar RDKit-XTB-QM9, além de desenvolver o modelo NGBoost e ajudar no streamlit.
 
-> Matheus P. V. da Silveira:
+> Matheus P. V. da Silveira: Desenvolveu os modelos Elatic Net, Extreme Gradient Boosting e Ensemble, além de ajudar no streamlit.
 
 
 

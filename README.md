@@ -59,7 +59,7 @@ Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor expe
 1. Leitura do README
 -Em que é feita uma introdução geral ao trabalho 
 2. Modelos de Machine Learning
--O ponto chave do projeto, pode seguir qualquer ordem para ler os seis principais, mas o Ensemble deve ser o último.
+-O ponto chave do projeto, comece pelo baseline e após pode seguir qualquer ordem para ler os ElasticNet, SVR, NGBoost, KRR e XGBoost, com o Ensemble deve sendo o último.
 3. Streamlit
 -O final do projeto, o resultado final do que foi feito.
 --------------------
@@ -83,7 +83,7 @@ Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor expe
   <tr>
     <td align="center">
       <a href="#" title="Edélio G. M. de Jesus">
-        <img src="https://avatars.githubusercontent.com/u/208799633?v=4" width="100px;" alt="Foto do Edélio do Github"/><br>
+        <img src="https://github.com/Velky2/R2D2/blob/main/images/edelio.jpeg?raw=true" width="100px;" alt="Foto do Edélio do Github"/><br>
           <a href="https://github.com/EdelioGabriel"><b>Edélio G. M. de Jesus<b></a>
       </a>
     </td>

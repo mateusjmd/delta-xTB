@@ -54,7 +54,15 @@ python -m streamlit run main.py
 ```
 2. O aplicativo deve abrir em seu navegador padrão automaticamente.
 --------------------
-
+## 🌊 Fluxo
+Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor experiência:
+1. Leitura do README
+-Em que é feita uma introdução geral ao trabalho 
+2. Modelos de Machine Learning
+-O ponto chave do projeto, pode seguir qualquer ordem para ler os seis principais, mas o Ensemble deve ser o último.
+3. Streamlit
+-O final do projeto, o resultado final do que foi feito.
+--------------------
 
 ## 👨‍🏫 Professor responsavel
 

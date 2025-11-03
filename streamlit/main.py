@@ -39,6 +39,9 @@ elif st.session_state.pagina == "Como usar":
 elif st.session_state.pagina == "Total Energy":
     st.markdown("<h1 style='text-align: center;'>Calcular Total Energy</h1>", unsafe_allow_html=True)
     st.markdown("---", unsafe_allow_html=True)
+    smiles = st.text_input("Digite seu smiles")
+    if (smiles):
+        st.text(f"Seu smiles é {smiles}")
 
 elif st.session_state.pagina == "MI":
     st.markdown("<h1 style='text-align: center;'>Mais informações</h1>", unsafe_allow_html=True)

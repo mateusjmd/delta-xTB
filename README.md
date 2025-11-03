@@ -20,20 +20,20 @@
 
 ## 📝 Descrição
 #### ❓O que é o RDKit?
-RDKit é uma biblioteca open-source em Python voltada para química computacional e quimioinformática. Permite criar, visualizar e manipular estruturas moleculares, calcular descritores e realizar buscas por similaridade. É amplamente usada em aprendizado de máquina aplicado a química e em pipelines de descoberta de fármacos e materiais.
+##### RDKit é uma biblioteca open-source em Python voltada para química computacional e quimioinformática. Permite criar, visualizar e manipular estruturas moleculares, calcular descritores e realizar buscas por similaridade. É amplamente usada em aprendizado de máquina aplicado a química e em pipelines de descoberta de fármacos e materiais.
 ------
 #### ❓O que é o XTB?
-xTB (extended Tight Binding) é um método semiempírico de química computacional desenvolvido para calcular rapidamente energias, geometrias e propriedades moleculares com boa precisão e baixo custo computacional. Ele é amplamente usado em otimizações geométricas, triagens de grandes conjuntos de moléculas e como aproximação inicial para métodos quânticos mais caros, como DFT.
+##### xTB (extended Tight Binding) é um método semiempírico de química computacional desenvolvido para calcular rapidamente energias, geometrias e propriedades moleculares com boa precisão e baixo custo computacional. Ele é amplamente usado em otimizações geométricas, triagens de grandes conjuntos de moléculas e como aproximação inicial para métodos quânticos mais caros, como DFT.
 ----
 #### ❓O que é o QM9?
-QM9 é um banco de dados público contendo propriedades físico-químicas de cerca de 134 mil pequenas moléculas orgânicas calculadas via teoria do funcional da densidade (DFT). Inclui dados como energia total, dipolo, polarizabilidade e entalpias. É amplamente utilizado para treinar e avaliar modelos de machine learning em química computacional.
+##### QM9 é um banco de dados público contendo propriedades físico-químicas de cerca de 134 mil pequenas moléculas orgânicas calculadas via teoria do funcional da densidade (DFT). Inclui dados como energia total, dipolo, polarizabilidade e entalpias. É amplamente utilizado para treinar e avaliar modelos de machine learning em química computacional.
 ---------------------
 #### ⁉️Qual o problema então?
-O XTB é um método rápido, porém com precisão não aceitável em muitos casos, precisando-se recorrer a DFTs mais pesados computacionalmente, o que acarreta em horas para um único cálculo.
+##### O XTB é um método rápido, porém com precisão não aceitável em muitos casos, precisando-se recorrer a DFTs mais pesados computacionalmente, o que acarreta em horas para um único cálculo.
 -------------
 
 #### ❗Como vamos resolver esse problema?
-- Usaremos o $\delta$-Learning, ou seja, nosso modelo predirá a diferença entre o resultado preciso, do QM9, e o rápido, do XTB, assim, ao final calculamos a energia total como: E = XTB + $\delta$, obtendo o resultado com alta velocidade e acuracia.
+##### Usaremos o $\delta$-Learning, ou seja, nosso modelo predirá a diferença entre o resultado preciso, do QM9, e o rápido, do XTB, assim, ao final calculamos a energia total como: E = XTB + $\delta$, obtendo o resultado com alta velocidade e acuracia.
 -----------------
 
 ## Como rodar em seu PC

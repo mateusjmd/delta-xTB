@@ -2,8 +2,9 @@
 > O $R^2\text{D}^2$ é um trabalho que calcula com alta precisão e velocidade a energia total de uma molécula a partir de seu SMILES
 
 <!------------------------------------>
-<img width="1600" height="900" alt="Brasão_R2D2" src="https://github.com/user-attachments/assets/26b1dcfe-39a3-423b-9bcc-44307bcb0799" />
-#### Shut up and Calculate
+<img width="800" height="450" alt="Brasão_R2D2" src="https://github.com/user-attachments/assets/26b1dcfe-39a3-423b-9bcc-44307bcb0799" />
+
+### Shut up and Calculate
 
 
 ## 🔎 Sumário

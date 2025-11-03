@@ -69,10 +69,6 @@ python -m streamlit run main.py
   </tr>
 </table>
 
-## ⭐ Agradecimentos
-
---------------
-
 ## 🤝 Colaboradores
 
 <table>
@@ -100,11 +96,11 @@ python -m streamlit run main.py
 
 ### 💪 Como cada colaborador contribuiu?
 
-> Edélio G. M. de Jesus:
+> Edélio G. M. de Jesus: Desenvolveu os modelos Suport Vector Machine e Kernel Ridge Regression, além de fazer a análise SHAP.
 
-> Mateus de Jesus Mendes:
+> Mateus de Jesus Mendes: Atuou para integrar RDKit-XTB-QM9, além de desenvolver o modelo NGBoost e ajudar no streamlit.
 
-> Matheus P. V. da Silveira:
+> Matheus P. V. da Silveira: Desenvolveu os modelos Elatic Net, Extreme Gradient Boosting e Ensemble, além de ajudar no streamlit.
 
 
 

@@ -3,6 +3,50 @@ import pandas as pd
 import traceback
 import io
 from PIL import Image
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem import AllChem
+from pathlib import Path
+import subprocess
+import tempfile
+import numpy as np
+import os
+import shlex
+
+def smiles_to_xyz_single(smiles: str, tmpdir: Path) -> Path | None:
+    mol = Chem.MolFromSmiles(smiles)
+    tmpdir_path = Path(tmpdir)
+    
+    # Criar o diretório se não existir
+    tmpdir_path.mkdir(parents=True, exist_ok=True)
+    
+    if mol is None:
+        return None
+    
+    mol = Chem.AddHs(mol)
+    params = AllChem.ETKDGv3()
+    params.randomSeed = 42
+    res = AllChem.EmbedMolecule(mol, params)
+    
+    if res != 0:
+        res = AllChem.EmbedMolecule(mol, useRandomCoords=True)
+        if res != 0:
+            return None
+    
+    try:
+        AllChem.UFFOptimizeMolecule(mol)
+    except Exception:
+        return None
+    
+    xyz_block = Chem.MolToXYZBlock(mol)
+    tmp_xyz = tmpdir_path / "molecule.xyz"
+    tmp_xyz.write_text(xyz_block)
+    return tmp_xyz
+
+
+
+
+
 
 #Deixar barra de opções invisível
 hide_menu_style = """
@@ -39,6 +83,10 @@ elif st.session_state.pagina == "Como usar":
 elif st.session_state.pagina == "Total Energy":
     st.markdown("<h1 style='text-align: center;'>Calcular Total Energy</h1>", unsafe_allow_html=True)
     st.markdown("---", unsafe_allow_html=True)
+    smiles = st.text_input("Digite seu smiles")
+    if (smiles):
+        smiles_to_xyz_single(smiles=smiles, tmpdir=Path('./mols'))
+        st.text(f"Seu smiles é {smiles}")
 
 elif st.session_state.pagina == "MI":
     st.markdown("<h1 style='text-align: center;'>Mais informações</h1>", unsafe_allow_html=True)

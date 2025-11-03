@@ -39,10 +39,22 @@
 ## Como rodar em seu PC
 ### 👨‍💻 Rodando Localmente
 📋 Pré-requisitos:
+
+1. Instale o Python em seu computador. Recomendamos a versão 3.12.7.
+2. Instale todas as bibliotecas necessárias. No VSCode, use o comando:
+```python
+pip install -r requirements.txt
+```
+
+▶️ Executando a aplicação
+1. Digite em seu terminal:
+```python
+cd streamlit
+python -m streamlit run main.py
+```
+2. O aplicativo deve abrir em seu navegador padrão automaticamente.
 --------------------
 
-### 🌐 Rodando na Web
-------------
 
 ## 👨‍🏫 Professor responsavel
 

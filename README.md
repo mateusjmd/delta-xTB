@@ -39,10 +39,30 @@
 ## Como rodar em seu PC
 ### 👨‍💻 Rodando Localmente
 📋 Pré-requisitos:
---------------------
 
-### 🌐 Rodando na Web
-------------
+1. Instale o Python em seu computador. Recomendamos a versão 3.12.7.
+2. Instale todas as bibliotecas necessárias. No VSCode, use o comando:
+```python
+pip install -r requirements.txt
+```
+
+▶️ Executando a aplicação
+1. Digite em seu terminal:
+```python
+cd streamlit
+python -m streamlit run main.py
+```
+2. O aplicativo deve abrir em seu navegador padrão automaticamente.
+--------------------
+## 🌊 Fluxo
+Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor experiência:
+1. Leitura do README
+-Em que é feita uma introdução geral ao trabalho 
+2. Modelos de Machine Learning
+-O ponto chave do projeto, comece pelo baseline e após pode seguir qualquer ordem para ler os ElasticNet, SVR, NGBoost, KRR e XGBoost, com o Ensemble deve sendo o último.
+3. Streamlit
+-O final do projeto, o resultado final do que foi feito.
+--------------------
 
 ## 👨‍🏫 Professor responsavel
 
@@ -57,17 +77,13 @@
   </tr>
 </table>
 
-## ⭐ Agradecimentos
-
---------------
-
 ## 🤝 Colaboradores
 
 <table>
   <tr>
     <td align="center">
       <a href="#" title="Edélio G. M. de Jesus">
-        <img src="https://avatars.githubusercontent.com/u/208799633?v=4" width="100px;" alt="Foto do Edélio do Github"/><br>
+        <img src="https://github.com/Velky2/R2D2/blob/main/images/edelio.jpeg?raw=true" width="100px;" alt="Foto do Edélio do Github"/><br>
           <a href="https://github.com/EdelioGabriel"><b>Edélio G. M. de Jesus<b></a>
       </a>
     </td>
@@ -88,11 +104,11 @@
 
 ### 💪 Como cada colaborador contribuiu?
 
-> Edélio G. M. de Jesus:
+> Edélio G. M. de Jesus: Desenvolveu os modelos Suport Vector Machine e Kernel Ridge Regression, além de fazer a análise SHAP.
 
-> Mateus de Jesus Mendes:
+> Mateus de Jesus Mendes: Atuou para integrar RDKit-XTB-QM9, além de desenvolver o modelo NGBoost e ajudar no streamlit.
 
-> Matheus P. V. da Silveira:
+> Matheus P. V. da Silveira: Desenvolveu os modelos Elatic Net, Extreme Gradient Boosting e Ensemble, além de ajudar no streamlit.
 
 
 

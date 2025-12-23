@@ -161,7 +161,7 @@ def run_optuna(study_name, X, y, instantiator, num_folds=5, n_trials=1_000):
     sampler = TPESampler(
         n_startup_trials=50,
         multivariate=True,
-        seed=42
+        seed=RANDOM_SEED
     )
 
     pruner = MedianPruner(

@@ -186,5 +186,4 @@ def run_optuna(study_name, X, y, instantiator, num_folds=5, n_trials=1_000):
 # Execução dos estudos de otimização de hiperparâmetros
 print("##### ESTUDOS INICIADOS #####")
 study_en = run_optuna('elasticnet', X_train, y_train, inst_elasticnet)
-
 print("##### ESTUDOS FINALIZADOS #####")

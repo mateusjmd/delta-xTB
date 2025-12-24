@@ -248,7 +248,7 @@ def nested_cv_fold(fold_idx, X, y, outer_splits, inner_splits, n_trials, studies
 
         db_path = os.path.join(
             studies_folder,
-            f'svr_fold_{fold + 1}.db'
+            f'{STUDY_NAME}_fold_{fold + 1}.db'
         )
 
         def inner_objective(trial):
@@ -260,7 +260,7 @@ def nested_cv_fold(fold_idx, X, y, outer_splits, inner_splits, n_trials, studies
             )
 
         study = create_study(
-            study_name=f'svr_fold_{fold + 1}',
+            study_name=f'{STUDY_NAME}_fold_{fold + 1}',
             direction='minimize',
             sampler=TPESampler(seed=RANDOM_SEED),
             pruner=HyperbandPruner(
@@ -293,7 +293,7 @@ def nested_cv_fold(fold_idx, X, y, outer_splits, inner_splits, n_trials, studies
             y_pred = best_model.predict(X_test)
             rmse_test = root_mean_squared_error(y_test, y_pred)
 
-        print(f'→ RMSE de teste externo (fold {fold + 1}): {rmse_test:.4f}')
+        print(f'RMSE de teste externo (fold {fold + 1}): {rmse_test:.4f}')
         return rmse_test
 
 def nested_cv(X, y, outer_splits=5, inner_splits=3, n_trials=200, studies_folder='estudos_optuna_svr_final'):

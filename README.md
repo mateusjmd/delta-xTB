@@ -1,24 +1,7 @@
-# $R^2\text{D}^2$
-> O $R^2\text{D}^2$ é um trabalho que calcula com alta precisão e velocidade a energia total de uma molécula a partir de seu SMILES
+# $\Delta-$xTB
+> O $\Delta-$xTB é uma aplicação que calcula com alta precisão e velocidade a energia total de uma molécula a partir de seu SMILES
 
-<!------------------------------------>
-<img width="800" height="450" alt="Brasão_R2D2" src="https://github.com/user-attachments/assets/26b1dcfe-39a3-423b-9bcc-44307bcb0799" />
-
-### Shut up and Calculate
-
-
-## 🔎 Sumário
-
-
-- [Sumário](#🔎-sumário)
-- [Descrição](#-descrição)
-- [Como rodar?](#como-rodar-em-seu-pc)
-- [Professor](#-professor-responsavel)
-- [Colaboradores](#-colaboradores)
-
-<!------------------------------------>
-
-## 📝 Descrição
+## Descrição
 #### ❓O que é o RDKit?
 ##### RDKit é uma biblioteca open-source em Python voltada para química computacional e quimioinformática. Permite criar, visualizar e manipular estruturas moleculares, calcular descritores e realizar buscas por similaridade. É amplamente usada em aprendizado de máquina aplicado a química e em pipelines de descoberta de fármacos e materiais.
 ------
@@ -37,8 +20,8 @@
 -----------------
 
 ## Como rodar em seu PC
-### 👨‍💻 Rodando Localmente
-📋 Pré-requisitos:
+### Rodando Localmente
+Pré-requisitos:
 
 1. Instale o Python em seu computador. Recomendamos a versão 3.12.7.
 2. Instale todas as bibliotecas necessárias. No VSCode, use o comando:
@@ -46,7 +29,7 @@
 pip install -r requirements.txt
 ```
 
-▶️ Executando a aplicação
+Executando a aplicação
 1. Digite em seu terminal:
 ```python
 cd streamlit
@@ -54,7 +37,7 @@ python -m streamlit run main.py
 ```
 2. O aplicativo deve abrir em seu navegador padrão automaticamente.
 --------------------
-## 🌊 Fluxo
+## Fluxo
 Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor experiência:
 1. Leitura do README
 -Em que é feita uma introdução geral ao trabalho 
@@ -64,7 +47,7 @@ Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor expe
 -O final do projeto, o resultado final do que foi feito.
 --------------------
 
-## 👨‍🏫 Professor responsavel
+## Professor Orientador
 
 <table>
   <tr>
@@ -77,7 +60,7 @@ Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor expe
   </tr>
 </table>
 
-## 🤝 Colaboradores
+## Desenvolvedores
 
 <table>
   <tr>
@@ -102,16 +85,13 @@ Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor expe
   </tr>
 </table>
 
-### 💪 Como cada colaborador contribuiu?
+### Contribuições Individuais
 
 > Edélio G. M. de Jesus: Desenvolveu os modelos Suport Vector Machine e Kernel Ridge Regression, além de fazer a análise SHAP.
 
 > Mateus de Jesus Mendes: Atuou para integrar RDKit-XTB-QM9, além de desenvolver o modelo NGBoost e ajudar no streamlit.
 
 > Matheus P. V. da Silveira: Desenvolveu os modelos Elatic Net, Extreme Gradient Boosting e Ensemble, além de ajudar no streamlit.
-
-
-
 
 
 ![alt text](https://ilum.cnpem.br/wp-content/uploads/2023/01/Ilum_800px-1536x287.png "Logo da Ilum completa")

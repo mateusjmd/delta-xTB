@@ -1,4 +1,4 @@
-# $\Delta-$xTB
+# $\Delta-\mathrm{xTB}$
 > O $\Delta-$xTB é uma aplicação que calcula com alta precisão e velocidade a energia total de uma molécula a partir de seu SMILES
 
 ## Descrição

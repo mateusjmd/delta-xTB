@@ -50,7 +50,7 @@ def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
 
     # Caminho absoluto do executável xTB
     #XTB_EXE = Path(r"C:\Users\mateus25032\xTB\xtb-6.7.1\bin\xtb.exe")
-    XTB_EXE = Path(r"..\..\xtb-6.7.1\bin\xtb.exe")
+    XTB_EXE = Path(r"..\xtb-6.7.1\bin\xtb.exe")
 
 
     if not XTB_EXE.exists():

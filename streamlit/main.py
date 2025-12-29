@@ -177,7 +177,7 @@ with tab1:
 
 
     st.markdown("---")
-    st.caption("© 2025 — Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) / Ilum - Escola de Ciência")
+    st.image(MEDIA_DIR / 'footer.webp')
 
 
 with tab2:
@@ -197,7 +197,8 @@ with tab2:
     st.video(MEDIA_DIR / 'tutorial.mp4')
 
     st.markdown("---")
-    st.caption("© 2025 — Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) / Ilum - Escola de Ciência")
+    st.image(MEDIA_DIR / 'footer.webp')
+
 
 
 with tab3:
@@ -288,7 +289,7 @@ with tab3:
                     st.error(f"Erro ao carregar o modelo: {e}")
 
     st.markdown("---")
-    st.caption("© 2025 — Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) / Ilum - Escola de Ciência")
+    st.image(MEDIA_DIR / 'footer.webp')
 
 
 with tab4:
@@ -325,4 +326,4 @@ with tab4:
     """)
 
     st.markdown("---")
-    st.caption("© 2025 — Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) / Ilum - Escola de Ciência")
+    st.image(MEDIA_DIR / 'footer.webp')

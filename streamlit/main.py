@@ -274,7 +274,7 @@ with tab3:
                 st.write(features)
 
                 try:
-                    model = joblib.load("ensemble.pkl")
+                    model = joblib.load("model.pkl")
                     columns_ref = joblib.load("columns_ref.pkl")
 
                     X_new = pd.DataFrame([features])

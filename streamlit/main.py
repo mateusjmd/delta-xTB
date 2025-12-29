@@ -46,6 +46,9 @@ class VIFSelector(BaseEstimator, TransformerMixin):
 # ===========
 # CONFIGURAÇÃO VISUAL
 # ===========
+BASE_DIR = Path(__file__).resolve().parent
+MEDIA_DIR = BASE_DIR / "media"
+
 page_bg_style = """
 <style>
 /* Header transparente */
@@ -66,7 +69,7 @@ page_bg_style = """
 """
 
 st.markdown(page_bg_style, unsafe_allow_html=True)
-st.set_page_config(page_title="Δ-xTB", page_icon="media/icon.png")
+st.set_page_config(page_title="Δ-xTB", page_icon=MEDIA_DIR / "icon.png")
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -82,7 +85,7 @@ tab1, tab2, tab3, tab4 = st.tabs(['Home', 'Tutorial', 'Δ-xTB', 'Info'])
 # CONTEÚDO DAS ABAS
 # ===========
 with tab1:
-    st.image('media/banner.png')
+    st.image(MEDIA_DIR / 'banner.png')
     st.markdown("<h3 style='text-align: center;'><i>Machine Learning for Cheminformatics<i></h3>", unsafe_allow_html=True)
     st.markdown("---")
 
@@ -191,7 +194,7 @@ with tab2:
     """)
 
     st.markdown('Vídeo demonstrativo:')
-    st.video('media/tutorial.mp4')
+    st.video(MEDIA_DIR / 'tutorial.mp4')
 
     st.markdown("---")
     st.caption("© 2025 — Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) / Ilum - Escola de Ciência")

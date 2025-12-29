@@ -200,7 +200,6 @@ with tab2:
     st.image(MEDIA_DIR / 'footer.webp')
 
 
-
 with tab3:
     st.markdown("<h1 style='text-align: center;'>Calcular Total Energy</h1>", unsafe_allow_html=True)
 
@@ -257,7 +256,7 @@ with tab3:
                     label="Download",
                     data=buf,
                     file_name="molecule.png",
-                    mime="image/png"
+                    mime="image/png",
                 )
 
 
@@ -274,8 +273,8 @@ with tab3:
                 st.write(features)
 
                 try:
-                    model = joblib.load("model.pkl")
-                    columns_ref = joblib.load("columns_ref.pkl")
+                    model = joblib.load(BASE_DIR / 'model.pkl')
+                    columns_ref = joblib.load(BASE_DIR / 'columns_ref.pkl')
 
                     X_new = pd.DataFrame([features])
                     for col in columns_ref:
@@ -284,7 +283,7 @@ with tab3:
                     X_new = X_new[columns_ref]
 
                     pred_energy = model.predict(X_new)[0]
-                    st.info(f"**Energia Total (xTB + Δ-learning):** {pred_energy:.6f} Eh")
+                    st.info(f"**Energia Total (xTB + Δ-learning): {pred_energy:.6f} Eh**")
                 except Exception as e:
                     st.error(f"Erro ao carregar o modelo: {e}")
 

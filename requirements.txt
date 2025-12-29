@@ -20,12 +20,4 @@ Pillow>=10.0.0
 # Utilidades e sistema
 pandas>=2.2.0
 numpy>=1.26.0
-pathlib
 subprocess32; sys_platform == "linux"
-tempfile
-shlex
-io
-os
-warnings
-concurrent-futures
-traceback

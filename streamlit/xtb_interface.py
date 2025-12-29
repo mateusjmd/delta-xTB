@@ -5,6 +5,10 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import subprocess
 from pathlib import Path
+import platform
+import tarfile
+import urllib.request
+import os
 
 RANDOM_SEED = 88
 
@@ -39,10 +43,54 @@ def smiles_to_xyz(smiles: str, output_dir: Path) -> Path | None:
 # ============================================================
 # 2. EXECUÇÃO DO xTB
 # ============================================================
-import subprocess
-import platform
-import os
-from pathlib import Path
+def get_xtb_binary() -> Path:
+    """
+    Obtém o binário multiplataforma (Windows/Linux) do xTB 
+    """
+    system = platform.system()
+
+    # Windows: usa o binário versionado
+    if system == "Windows":
+        base = Path(__file__).resolve().parents[1]
+        xtb = base / "xtb-windows" / "bin" / "xtb.exe"
+
+        if not xtb.exists():
+            raise FileNotFoundError("xTB.exe não encontrado no projeto.")
+
+        return xtb
+
+    # Linux: baixa dinamicamente
+    elif system == "Linux":
+        tmp_dir = Path("/tmp/xtb")
+        bin_path = tmp_dir / "bin" / "xtb"
+
+        if bin_path.exists():
+            return bin_path
+
+        tmp_dir.mkdir(parents=True, exist_ok=True)
+
+        url = (
+            "https://github.com/grimme-lab/xtb/releases/download/v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz"
+        )
+
+        tar_path = tmp_dir / "xtb.tar.xz"
+
+        # Download
+        urllib.request.urlretrieve(url, tar_path)
+
+        # Extração
+        with tarfile.open(tar_path) as tar:
+            tar.extractall(tmp_dir)
+
+        # O tar cria algo como xtb-6.7.1/bin/xtb
+        extracted = next(tmp_dir.glob("xtb-dist/bin/xtb"))
+
+        os.chmod(extracted, 0o755)
+
+        return extracted
+
+    else:
+        raise RuntimeError(f"Sistema operacional não suportado: {system}")
 
 
 def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
@@ -55,32 +103,8 @@ def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
     workdir = xyz_path.parent
     out_path = workdir / "xtb.out"
 
-    # Diretório base do projeto
-    BASE_DIR = Path(__file__).resolve().parents[1]
+    xtb_bin = get_xtb_binary()
 
-    # Identificação do sistema operacional
-    system = platform.system()
-
-    if system == "Windows":
-        xtb_bin = BASE_DIR / "xtb-windows" / "bin" / "xtb.exe"
-    elif system == "Linux":
-        xtb_bin = BASE_DIR / "xtb-linux" / "bin" / "xtb"
-    else:
-        raise RuntimeError(f"Sistema operacional não suportado: {system}")
-
-    # Validações explícitas
-    if not xtb_bin.exists():
-        raise FileNotFoundError(f"xTB não encontrado em: {xtb_bin}")
-
-    if not workdir.exists():
-        raise FileNotFoundError(f"Diretório inexistente: {workdir}")
-
-    if system == "Linux" and not os.access(xtb_bin, os.X_OK):
-        raise PermissionError(
-            f"Binário do xTB existe, mas não possui permissão de execução: {xtb_bin}"
-        )
-
-    # Montagem do comando (forma segura para ambos os sistemas)
     cmd = [
         str(xtb_bin),
         str(xyz_path),
@@ -102,12 +126,8 @@ def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
 
         return out_path if out_path.exists() else None
 
-    except subprocess.TimeoutExpired:
-        print("[ERRO] Execução do xTB excedeu o tempo limite.")
-        return None
-
-    except subprocess.CalledProcessError as e:
-        print(f"[ERRO] Falha na execução do xTB: {e}")
+    except Exception as e:
+        print(f"[ERRO] Execução do xTB falhou: {e}")
         return None
 
 

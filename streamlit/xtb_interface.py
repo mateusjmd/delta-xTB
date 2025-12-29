@@ -39,38 +39,73 @@ def smiles_to_xyz(smiles: str, output_dir: Path) -> Path | None:
 # ============================================================
 # 2. EXECUÇÃO DO xTB
 # ============================================================
+import subprocess
+import platform
+import os
+from pathlib import Path
+
+
 def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
     """
-    Executa o xTB no Windows de forma segura e retorna o caminho do arquivo .out.
+    Executa o xTB de forma multiplataforma (Windows / Linux)
+    e retorna o caminho do arquivo .out.
     """
 
-    xyz_path = Path(xyz_path)
+    xyz_path = Path(xyz_path).resolve()
     workdir = xyz_path.parent
     out_path = workdir / "xtb.out"
 
-    # Caminho absoluto do executável xTB
+    # Diretório base do projeto
     BASE_DIR = Path(__file__).resolve().parents[1]
-    XTB_EXE = BASE_DIR / "xtb-6.7.1" / "bin" / "xtb.exe"
 
-    if not XTB_EXE.exists():
-        raise FileNotFoundError(f"xTB não encontrado em: {XTB_EXE}")
+    # Identificação do sistema operacional
+    system = platform.system()
+
+    if system == "Windows":
+        xtb_bin = BASE_DIR / "xtb-windows" / "bin" / "xtb.exe"
+    elif system == "Linux":
+        xtb_bin = BASE_DIR / "xtb-linux" / "bin" / "xtb"
+    else:
+        raise RuntimeError(f"Sistema operacional não suportado: {system}")
+
+    # Validações explícitas
+    if not xtb_bin.exists():
+        raise FileNotFoundError(f"xTB não encontrado em: {xtb_bin}")
 
     if not workdir.exists():
         raise FileNotFoundError(f"Diretório inexistente: {workdir}")
 
-    # Monta o comando como lista (forma mais segura no Windows)
+    if system == "Linux" and not os.access(xtb_bin, os.X_OK):
+        raise PermissionError(
+            f"Binário do xTB existe, mas não possui permissão de execução: {xtb_bin}"
+        )
+
+    # Montagem do comando (forma segura para ambos os sistemas)
     cmd = [
-        str(XTB_EXE),
+        str(xtb_bin),
         str(xyz_path),
         "--opt",
         "--gfn",
-        str(gfn)
+        str(gfn),
     ]
 
     try:
         with open(out_path, "w", encoding="utf-8") as f:
-            subprocess.run(cmd, stdout=f, stderr=subprocess.STDOUT, cwd=str(workdir), check=True, timeout=600)
+            subprocess.run(
+                cmd,
+                stdout=f,
+                stderr=subprocess.STDOUT,
+                cwd=str(workdir),
+                check=True,
+                timeout=600,
+            )
+
         return out_path if out_path.exists() else None
+
+    except subprocess.TimeoutExpired:
+        print("[ERRO] Execução do xTB excedeu o tempo limite.")
+        return None
+
     except subprocess.CalledProcessError as e:
         print(f"[ERRO] Falha na execução do xTB: {e}")
         return None

@@ -14,7 +14,7 @@ tabulate
 streamlit
 
 # Química computacional
-rdkit-pypi
+rdkit
 Pillow
 
 # Utilidades e sistema

@@ -43,51 +43,82 @@ def smiles_to_xyz(smiles: str, output_dir: Path) -> Path | None:
 # ============================================================
 # 2. EXECUÇÃO DO xTB
 # ============================================================
+def _get_xtb_windows() -> Path:
+    base = Path(__file__).resolve().parents[1]
+    xtb = base / "xtb-windows" / "bin" / "xtb.exe"
+
+    if not xtb.exists():
+        raise FileNotFoundError(
+            "xTB.exe não encontrado. Verifique a pasta xtb-windows."
+        )
+
+    return xtb
+
+
+def _get_xtb_linux_local() -> Path:
+    base = Path(__file__).resolve().parents[1]
+    xtb = base / "xtb-linux" / "bin" / "xtb"
+
+    if not xtb.exists():
+        raise FileNotFoundError("xTB Linux local não encontrado.")
+
+    if not os.access(xtb, os.X_OK):
+        raise PermissionError(
+            "xTB Linux encontrado, mas não é executável (chmod +x necessário)."
+        )
+
+    return xtb
+
+
+def _get_xtb_linux_dynamic() -> Path:
+    tmp_dir = Path("/tmp/xtb")
+    bin_path = tmp_dir / "xtb-6.7.1" / "bin" / "xtb"
+
+    if bin_path.exists():
+        return bin_path
+
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+
+    url = (
+        "https://github.com/grimme-lab/xtb/releases/download/"
+        "v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz"
+    )
+
+    tar_path = tmp_dir / "xtb.tar.xz"
+
+    urllib.request.urlretrieve(url, tar_path)
+
+    with tarfile.open(tar_path) as tar:
+        tar.extractall(tmp_dir)
+
+    if not bin_path.exists():
+        raise RuntimeError("Falha ao localizar o binário do xTB após extração.")
+
+    os.chmod(bin_path, 0o755)
+
+    return bin_path
+
+
 def get_xtb_binary() -> Path:
     """
-    Obtém o binário multiplataforma (Windows/Linux) do xTB 
+    Resolve o binário do xTB de forma multiplataforma.
+
+    Estratégia:
+    - Windows: usa binário versionado no repositório
+    - Linux:
+        1) tenta usar binário Linux local (execução local)
+        2) fallback: baixa binário em diretório temporário (cloud/servidor)
     """
     system = platform.system()
 
-    # Windows: usa o binário versionado
     if system == "Windows":
-        base = Path(__file__).resolve().parents[1]
-        xtb = base / "xtb-windows" / "bin" / "xtb.exe"
+        return _get_xtb_windows()
 
-        if not xtb.exists():
-            raise FileNotFoundError("xTB.exe não encontrado no projeto.")
-
-        return xtb
-
-    # Linux: baixa dinamicamente
     elif system == "Linux":
-        tmp_dir = Path("/tmp/xtb")
-        bin_path = tmp_dir / "bin" / "xtb"
-
-        if bin_path.exists():
-            return bin_path
-
-        tmp_dir.mkdir(parents=True, exist_ok=True)
-
-        url = (
-            "https://github.com/grimme-lab/xtb/releases/download/v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz"
-        )
-
-        tar_path = tmp_dir / "xtb.tar.xz"
-
-        # Download
-        urllib.request.urlretrieve(url, tar_path)
-
-        # Extração
-        with tarfile.open(tar_path) as tar:
-            tar.extractall(tmp_dir)
-
-        # O tar cria algo como xtb-6.7.1/bin/xtb
-        extracted = next(tmp_dir.glob("xtb-dist/bin/xtb"))
-
-        os.chmod(extracted, 0o755)
-
-        return extracted
+        try:
+            return _get_xtb_linux_local()
+        except (FileNotFoundError, PermissionError):
+            return _get_xtb_linux_dynamic()
 
     else:
         raise RuntimeError(f"Sistema operacional não suportado: {system}")
@@ -95,10 +126,8 @@ def get_xtb_binary() -> Path:
 
 def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
     """
-    Executa o xTB de forma multiplataforma (Windows / Linux)
-    e retorna o caminho do arquivo .out.
+    Executa o xTB de forma multiplataforma e retorna o caminho do arquivo .out.
     """
-
     xyz_path = Path(xyz_path).resolve()
     workdir = xyz_path.parent
     out_path = workdir / "xtb.out"
@@ -126,10 +155,13 @@ def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
 
         return out_path if out_path.exists() else None
 
-    except Exception as e:
-        print(f"[ERRO] Execução do xTB falhou: {e}")
+    except subprocess.TimeoutExpired:
+        print("[ERRO] Execução do xTB excedeu o tempo limite.")
         return None
 
+    except subprocess.CalledProcessError as e:
+        print(f"[ERRO] Falha na execução do xTB: {e}")
+        return None
 
 
 # ============================================================

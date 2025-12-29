@@ -49,11 +49,8 @@ def run_xtb(xyz_path: Path, gfn: int = 2) -> Path | None:
     out_path = workdir / "xtb.out"
 
     # Caminho absoluto do executável xTB
-    BASE_DIR = Path(__file__).resolve().parent
-    MEDIA_DIR = BASE_DIR / "media"
-    XTB_DIR = BASE_DIR / 'xtb-6.7.1/bin/xtb.exe'
-
-    XTB_EXE = Path(XTB_DIR)
+    BASE_DIR = Path(__file__).resolve().parents[1]
+    XTB_EXE = BASE_DIR / "xtb-6.7.1" / "bin" / "xtb.exe"
 
     if not XTB_EXE.exists():
         raise FileNotFoundError(f"xTB não encontrado em: {XTB_EXE}")

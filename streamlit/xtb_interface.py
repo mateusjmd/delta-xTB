@@ -72,7 +72,7 @@ def _get_xtb_linux_local() -> Path:
 
 def _get_xtb_linux_dynamic() -> Path:
     tmp_dir = Path("/tmp/xtb")
-    bin_path = tmp_dir / "xtb-6.7.1" / "bin" / "xtb"
+    bin_path = tmp_dir / "xtb-dist" / "bin" / "xtb"
 
     if bin_path.exists():
         return bin_path
@@ -80,8 +80,7 @@ def _get_xtb_linux_dynamic() -> Path:
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
     url = (
-        "https://github.com/grimme-lab/xtb/releases/download/"
-        "v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz"
+        "https://github.com/grimme-lab/xtb/releases/download/v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz"
     )
 
     tar_path = tmp_dir / "xtb.tar.xz"

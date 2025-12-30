@@ -178,7 +178,7 @@ with tab1:
 
 
     st.markdown('---')
-    st.image(MEDIA_DIR / 'footer.webp')
+    render_image_no_zoom(MEDIA_DIR / "footer.webp")
 
 
 # Tutorial

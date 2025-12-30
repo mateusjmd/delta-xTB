@@ -1,99 +1,58 @@
+![Banner](streamlit/media/banner.png)
+
 # $\Delta-\mathrm{xTB}$
-> O $\Delta-$xTB é uma aplicação que calcula com alta precisão e velocidade a energia total de uma molécula a partir de seu SMILES
 
-## Descrição
-#### ❓O que é o RDKit?
-##### RDKit é uma biblioteca open-source em Python voltada para química computacional e quimioinformática. Permite criar, visualizar e manipular estruturas moleculares, calcular descritores e realizar buscas por similaridade. É amplamente usada em aprendizado de máquina aplicado a química e em pipelines de descoberta de fármacos e materiais.
-------
-#### ❓O que é o XTB?
-##### xTB (extended Tight Binding) é um método semiempírico de química computacional desenvolvido para calcular rapidamente energias, geometrias e propriedades moleculares com boa precisão e baixo custo computacional. Ele é amplamente usado em otimizações geométricas, triagens de grandes conjuntos de moléculas e como aproximação inicial para métodos quânticos mais caros, como DFT.
-----
-#### ❓O que é o QM9?
-##### QM9 é um banco de dados público contendo propriedades físico-químicas de cerca de 134 mil pequenas moléculas orgânicas calculadas via teoria do funcional da densidade (DFT). Inclui dados como energia total, dipolo, polarizabilidade e entalpias. É amplamente utilizado para treinar e avaliar modelos de machine learning em química computacional.
----------------------
-#### ⁉️Qual o problema então?
-##### O XTB é um método rápido, porém com precisão não aceitável em muitos casos, precisando-se recorrer a DFTs mais pesados computacionalmente, o que acarreta em horas para um único cálculo.
--------------
+O $\Delta$-$\mathrm{xTB}$ é uma aplicação desenvolvida como projeto final da disciplina de *Machine Learning* do curso de Bacharelado 
+em Ciência e Tecnologia da [**Ilum — Escola de Ciência**](https://ilum.cnpem.br). Seu objetivo central é empregar métodos supervisionados de *Machine 
+Learning* para a predição de propriedades termodinâmicas e eletrônicas de espécies químicas a partir de sua representação estrutural
+em **[SMILES](https://pubs.acs.org/doi/10.1021/ci00057a005)**.
 
-#### ❗Como vamos resolver esse problema?
-##### Usaremos o $\delta$-Learning, ou seja, nosso modelo predirá a diferença entre o resultado preciso, do QM9, e o rápido, do XTB, assim, ao final calculamos a energia total como: E = XTB + $\delta$, obtendo o resultado com alta velocidade e acuracia.
------------------
+A proposta insere-se no cenário contemporâneo da química computacional, no qual a ampliação do espaço químico explorável — 
+tanto em diversidade estrutural quanto em complexidade eletrônica — impõe desafios significativos em termos de custo computacional, 
+escalabilidade e tempo de resposta. Nesse contexto, torna-se essencial o desenvolvimento de abordagens que conciliem rigor 
+físico-químico, eficiência numérica e viabilidade computacional, sem comprometer a confiabilidade das predições.
 
-## Como rodar em seu PC
-### Rodando Localmente
-Pré-requisitos:
-
-1. Instale o Python em seu computador. Recomendamos a versão 3.12.7.
-2. Instale todas as bibliotecas necessárias. No VSCode, use o comando:
-```python
-pip install -r requirements.txt
-```
-
-Executando a aplicação
-1. Digite em seu terminal:
-```python
-cd streamlit
-python -m streamlit run main.py
-```
-2. O aplicativo deve abrir em seu navegador padrão automaticamente.
---------------------
-## Fluxo
-Caso deseje entender o trabalho, recomendamos seguir esta ordem para melhor experiência:
-1. Leitura do README
--Em que é feita uma introdução geral ao trabalho 
-2. Modelos de Machine Learning
--O ponto chave do projeto, comece pelo baseline e após pode seguir qualquer ordem para ler os ElasticNet, SVR, NGBoost, KRR e XGBoost, com o Ensemble deve sendo o último.
-3. Streamlit
--O final do projeto, o resultado final do que foi feito.
---------------------
-
-## Professor Orientador
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="#" title="Prof. Daniel R. Cassar">
-        <img src="https://avatars.githubusercontent.com/u/9871905?v=4" width="100px;" alt="Foto do Daniel do Github"/><br>
-          <a href="https://github.com/drcassar"><b>Prof. Dr. Daniel R. Cassar<b></a>
-      </a>
-    </td>
-  </tr>
-</table>
-
-## Desenvolvedores
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="#" title="Edélio G. M. de Jesus">
-        <img src="https://github.com/Velky2/R2D2/blob/main/images/edelio.jpeg?raw=true" width="100px;" alt="Foto do Edélio do Github"/><br>
-          <a href="https://github.com/EdelioGabriel"><b>Edélio G. M. de Jesus<b></a>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="Mateus de Jesus Mendes">
-        <img src="https://avatars.githubusercontent.com/u/210257411?v=4" width="100px;" alt="Foto do Mateus do Github"/><br>
-          <a href="https://github.com/mateusjmd"><b>Mateus de Jesus Mendes<b></a>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="Matheus P. V. da Silveira">
-        <img src="https://avatars.githubusercontent.com/u/192454172?v=4" width="100px;" alt="Foto do Matheus do Github"/><br>
-          <a href="https://github.com/Velky2"><b>Matheus P. V. da Silveira<b></a>
-      </a>
-    </td>
-  </tr>
-</table>
-
-### Contribuições Individuais
-
-> Edélio G. M. de Jesus: Desenvolveu os modelos Suport Vector Machine e Kernel Ridge Regression, além de fazer a análise SHAP.
-
-> Mateus de Jesus Mendes: Atuou para integrar RDKit-XTB-QM9, além de desenvolver o modelo NGBoost e ajudar no streamlit.
-
-> Matheus P. V. da Silveira: Desenvolveu os modelos Elatic Net, Extreme Gradient Boosting e Ensemble, além de ajudar no streamlit.
+A versão mais recente da aplicação pode ser acessada em: [**$\Delta$-$\mathrm{xTB}$**](https://delta-xtb.streamlit.app/)
 
 
-![alt text](https://ilum.cnpem.br/wp-content/uploads/2023/01/Ilum_800px-1536x287.png "Logo da Ilum completa")
+### Execução Local
 
-<!------------------------------------>
+Para rodar o $\Delta$-$\mathrm{xTB}$ localmente, siga as etapas:
+
+1. Instale o [**Python 3.12.7**](https://www.python.org/downloads/).
+2. Clone o repositório.
+3. Instale as bibliotecas necessárias executando o seguinte comando com o terminal no diretório raiz do repositório:
+
+  ```python
+  pip install -r requirements.txt
+  ```
+4. Ainda no terminal, navegue até diretório `streamlit` e execute o comando:
+  ```python
+  python -m streamlit run main.py
+  ```
+5. Por fim, a interface do Streamlit abrirá no navegador padrão automaticamente.
+
+
+> **📌 Observação:** A execução local da aplicação é suportada nos sistemas operacionais Windows e Linux.
+
+
+### Fluxo de Acesso
+Para compreender os aspectos metodológicos envolvidos no desenvolvimento desse projeto, acesse na ordem:
+
+1. Pré-processamento do *dataset* `QM9` no diretório `dataset_processing`.
+2. Modelos de *Machine Learning* no diretório `machine_learning_models`: cada subdiretório destina-se ao conjunto de arquivos referente ao respectivo modelo, contendo um *Jupyter Notebook* com detalhes técnicos, um *script* em Python para o *tunning* do modelo utilizando HPC (*High Performance Computing*) e os estudos de otimização de hiperparâmetros obtidos pelo Optuna.
+
+3. Aplicação final à interface gráfica utilizando o Streamlit, com integração entre *back* e *front-end* no diretório `streamlit`
+
+
+### Desenvolvedores
+
+Esse projeto foi desenvolvido de maneira independente por Mateus de Jesus Mendes, a partir de um *fork* do projeto inicialmente concebido conjuntamente com [**Edélio G. M. de Jesus**](https://github.com/EdelioGabriel) e [**Matheus P. V. da Silveira**](https://github.com/Velky2), mantendo-se a autoria das devidas contribuições reutilizadas para o seu desenvolvimento. A versão inicial pode ser acessada em: [$R^2D^2$](https://github.com/Velky2/R2D2).
+
+
+### Professor Orientador
+
+Esse projeto foi orientado e fundamentado teoricamente a partir da disciplina de Aprendizado de Máquina lecionada pelo [**Prof. Dr.
+Daniel Roberto Cassar**](https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4262774J5).
+
+![Footer](https://ilum.cnpem.br/wp-content/uploads/2023/01/Ilum_800px-1536x287.png)

@@ -32,9 +32,16 @@ Para rodar o $\Delta-\mathrm{xTB}$ localmente, siga as etapas:
   ```
 5. Por fim, a interface do Streamlit abrirá no navegador padrão automaticamente.
 
+6. Em caso de permissão negada para a execução do binário do xTB, execute o seguinte comando no terminal:
+- Windows:
+```python
+chmod +x xtb-windows/bin/xtb.exe
+```
 
-> **📌 Observação:** A execução local da aplicação é suportada nos sistemas operacionais Windows e Linux.
-
+- Linux:
+```python
+chmod +x xtb-linux/bin/xtb
+```
 
 ## Fluxo de Acesso
 
